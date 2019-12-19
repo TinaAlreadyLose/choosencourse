@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>课程信息添加</title>
+</head>
+<body>
+<div class="container">
+    <div class="col">
+        <form class="form-register" action="{% url 'chocour:course' %}" method="POST">
+            {% csrf_token %}
+            <h3 class="text-center">课程添加</h3>
+            {#            <div class="form-group">#}
+            {#                {{ stuInfo_form.major.label_tag }}#}
+            {#                {{ stuInfo_form.major }}#}
+            {#            </div>#}
+            <div class="form-group">
+                {{ course_form.cid.label_tag }}
+                {{ course_form.cid }}
+            </div>
+            <div class="form-group">
+                {{ course_form.cname.label_tag }}
+                {{ course_form.cname }}
+            </div>
+            <div class="form-group">
+                {{ course_form.cmark.label_tag }}
+                {{ course_form.cmark }}
+            </div>
+            <div class="form-group">
+                <label for="mids">专业：(按住ctrl即可多选)</label>
+                <select name="mids" id="mids" class="form-control" size="5" multiple>
+                    {% for m in majors %}
+                        <option value={{ m.mid }}>{{ m.mid }}--{{ m.mname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tids">老师：按住ctrl即可多选)</label>
+                <select name="tids" id="tids" class="form-control" size="5" multiple>
+                    {% for t in teachers %}
+                        <option value={{ t.tid }}>{{ t.tid }}--{{ t.tname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary float-right">创建</button>
+            </div>
+        </form>
+    </div>
+</div> <!-- /container -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+{#    以下三者的引用顺序是固定的#}
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
